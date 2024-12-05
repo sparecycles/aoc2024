@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { readFileSync } from 'node:fs';
 const arg = process.argv[2];
 const input = arg == 'i' ? './input' : (arg ?? './sample');
@@ -19,8 +20,6 @@ const { rules, updates } = readFileSync(input, 'utf-8')
     { rules: [], updates: [], updating: false },
   );
 
-console.log({ rules, updates });
-
 const { before } = rules.reduce(
   ({ before }, [a, b]) => {
     (before[b] ??= []).push(a);
@@ -41,4 +40,14 @@ const sum = sorted
   .map((update) => update[(update.length - 1) / 2])
   .reduce((a, b) => a + Number(b), 0);
 
-console.log(sorted.join('\n') + '\n---\n' + sum);
+console.log(
+  sorted
+    .map((updates) =>
+      updates
+        .map((n, i, s) => (i === (s.length - 1) / 2 ? chalk.red(n) : n))
+        .join(','),
+    )
+    .join('\n') +
+    '\n---\n' +
+    sum,
+);
