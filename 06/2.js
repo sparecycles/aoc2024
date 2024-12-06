@@ -33,7 +33,7 @@ function dir(dx, dy) {
 const steps = lines.map((line) => line.map((_) => [_]));
 
 function searchBlocker(guard) {
-  const mysteps = steps.map((line) => line.map((_) => _.slice()));
+  const mysteps = steps.map((line) => line.map((_) => []));
 
   const facing = dir(guard.dx, guard.dy);
 
