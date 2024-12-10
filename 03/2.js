@@ -7,7 +7,6 @@ const memory = readFileSync(input, 'utf-8');
 let total = 0;
 let enabled = true;
 memory.replace(/mul\((\d+),(\d+)\)|(do|don't)\(\)/g, (match, n, m, dd) => {
-  console.log(n, m, dd);
   if (enabled && n && m) {
     total += Number(n) * Number(m);
   }
