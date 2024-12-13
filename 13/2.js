@@ -28,22 +28,12 @@ function cost({ A, B }) {
   return Number(BigInt(A) * 3n + BigInt(B));
 }
 
-function div(a, b) {
-  a = BigInt(a);
-  b = BigInt(b);
-  if (a % b === 0n) {
-    return Number(a / b);
-  }
-}
-
 function play({ a, b, prize }) {
-  try {
-    const B = div(prize.x * a.y - prize.y * a.x, b.x * a.y - b.y * a.x);
-    const A = div(prize.x - B * b.x, a.x);
-    if (B == Math.floor(B) && A == Math.floor(A)) {
-      return cost({ A, B });
-    }
-  } catch (e) {}
+  const B = (prize.x * a.y - prize.y * a.x) / (b.x * a.y - b.y * a.x);
+  const A = (prize.x - B * b.x) / a.x;
+  if (B == Math.floor(B) && A == Math.floor(A)) {
+    return cost({ A, B });
+  }
 }
 
 console.log(
