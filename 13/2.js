@@ -25,7 +25,7 @@ const games = readFileSync(input, 'utf-8')
   }, []);
 
 function cost({ A, B }) {
-  return Number(BigInt(A) * 3n + BigInt(B));
+  return A * 3 + B;
 }
 
 function play({ a, b, prize }) {
