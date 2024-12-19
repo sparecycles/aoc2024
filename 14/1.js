@@ -42,18 +42,14 @@ function score(bots) {
   for (const {
     p: { x, y },
   } of bots) {
-    //console.log({ x, y, width, height });
     if (x == (width - 1) / 2 || y == (height - 1) / 2) {
-      console.log({ x, y });
       continue;
     }
 
     const quad = (x > width / 2 ? 1 : 0) + (y > height / 2 ? 2 : 0);
-    console.log({ x, y }, quad);
     counts[quad]++;
   }
 
-  console.log(counts);
   return counts.reduce((p, c) => p * c, 1);
 }
 

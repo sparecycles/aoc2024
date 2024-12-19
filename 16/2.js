@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { readFileSync } from 'node:fs';
 const arg = process.argv[2];
 const input = arg == 'i' ? './input' : (arg ?? './sample');
@@ -129,11 +130,13 @@ const seats = new Set(
     .flatMap(({ from }) => from.flatMap(searchFrom)),
 );
 
-if (false)
+if (true)
   console.log(
     map
       .map((row, y) =>
-        row.map((c, x) => (seats.has(`${x},${y}`) ? 'O' : c)).join(''),
+        row
+          .map((c, x) => (seats.has(`${x},${y}`) ? chalk.magenta('O') : c))
+          .join(''),
       )
       .join('\n'),
   );
